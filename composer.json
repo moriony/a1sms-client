@@ -1,0 +1,22 @@
+{
+    "name" : "moriony/a1sms-client",
+    "description": "API client for A1 SMS Market service",
+    "keywords": ["sms", "a1smsmarket", "a1sms"],
+    "homepage": "https://github.com/moriony/a1sms-client",
+    "type": "library",
+    "license":  "MIT",
+    "require": {
+        "php": ">=5"
+    },
+    "authors": [
+        {
+            "name": "Vitaliy Chesnokov",
+            "email": "demateus@gmail.com"
+        }
+    ],
+    "autoload" : {
+        "psr-0": {
+            "Moriony": "src/"
+        }
+    }
+}
