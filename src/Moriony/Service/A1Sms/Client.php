@@ -143,7 +143,7 @@ class Client
      */
     public function send($phone, $message)
     {
-        if(is_scalar($phone) || !preg_match('/^[\d]{11,13}$/usi', $phone)) {
+        if(!is_scalar($phone) || !preg_match('/^[\d]{11,13}$/usi', $phone)) {
             throw new InvalidPhoneNumber;
         }
         if(!is_scalar($message)) {
