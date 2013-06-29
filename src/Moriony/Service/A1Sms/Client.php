@@ -7,6 +7,8 @@ use Moriony\Service\A1Sms\Exception\InvalidPassword;
 use Moriony\Service\A1Sms\Exception\InvalidPhoneNumber;
 use Moriony\Service\A1Sms\Exception\InvalidSenderName;
 use Moriony\Service\A1Sms\Exception\InvalidTransactionId;
+use Moriony\Service\A1Sms\Response\SendResponse;
+use Moriony\Service\A1Sms\Response\StatusResponse;
 
 class Client
 {

@@ -1,5 +1,5 @@
 <?php
-namespace Moriony\Service\A1Sms;
+namespace Moriony\Service\A1Sms\Response;
 
 abstract class AbstractResponse
 {
