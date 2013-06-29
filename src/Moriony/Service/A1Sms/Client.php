@@ -25,17 +25,20 @@ class Client
 
     protected $login;
     protected $password;
+    protected $sender;
 
     /**
      * @param string $login
      * @param string $password
+     * @param string $sender
      * @throws Exception\InvalidLogin
      * @throws Exception\InvalidPassword
      */
-    public function __construct($login, $password)
+    public function __construct($login, $password, $sender)
     {
         $this->setLogin($login);
         $this->setPassword($password);
+        $this->setSender($sender);
     }
 
     /**
@@ -67,6 +70,20 @@ class Client
     }
 
     /**
+     * @param string $sender
+     * @throws Exception\InvalidSenderName
+     * @return $this
+     */
+    public function setSender($sender)
+    {
+        if(!is_scalar($sender) || !preg_match('/^[\d\w]{1,11}$/usi', $sender)) {
+            throw new InvalidSenderName;
+        }
+        $this->sender = $sender;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getLogin()
@@ -80,6 +97,14 @@ class Client
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSender()
+    {
+        return $this->sender;
     }
 
     /**
@@ -111,28 +136,24 @@ class Client
     /**
      * @param string $phone
      * @param string $message
-     * @param string $sender
      * @return SendResponse
      * @throws Exception\InvalidPhoneNumber
      * @throws Exception\InvalidSenderName
      * @throws Exception\InvalidMessage
      */
-    public function send($phone, $message, $sender)
+    public function send($phone, $message)
     {
         if(is_scalar($phone) || !preg_match('/^[\d]{11,13}$/usi', $phone)) {
             throw new InvalidPhoneNumber;
         }
-        if(!is_scalar($sender)) {
+        if(!is_scalar($message)) {
             throw new InvalidMessage;
-        }
-        if(!is_scalar($sender) || !preg_match('/^[\d\w]{1,11}$/usi', $sender)) {
-            throw new InvalidSenderName;
         }
         $params = array(
             self::OPT_LOGIN => $this->getLogin(),
             self::OPT_PASSWORD => $this->getPassword(),
             self::OPT_MSISDN => $phone,
-            self::OPT_SHORTCODE => $sender,
+            self::OPT_SHORTCODE => $this->getSender(),
             self::OPT_TEXT => $message,
         );
         $response = $this->call(self::OPERATION_SEND, $params);
