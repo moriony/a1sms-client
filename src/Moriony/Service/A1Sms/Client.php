@@ -78,7 +78,7 @@ class Client
      */
     public function setSender($sender)
     {
-        if(!is_scalar($sender) || !preg_match('/^[\d\w]{1,11}$/usi', $sender)) {
+        if(!is_scalar($sender) || !preg_match('/^[\d\w]{1,15}$/usi', $sender)) {
             throw new InvalidSenderName;
         }
         $this->sender = $sender;
