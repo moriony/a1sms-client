@@ -78,7 +78,7 @@ class Client
      */
     public function setSender($sender)
     {
-        if(!is_scalar($sender) || !preg_match('/^[\d\w]{1,15}$/usi', $sender)) {
+        if(!is_scalar($sender) || !preg_match('/^[\d\w]{1,11}$/usi', $sender)) {
             throw new InvalidSenderName;
         }
         $this->sender = $sender;
@@ -145,7 +145,7 @@ class Client
      */
     public function send($phone, $message)
     {
-        if(!is_scalar($phone) || !preg_match('/^[\d]{11,13}$/usi', $phone)) {
+        if(!is_scalar($phone) || !preg_match('/^[\d]{11,15}$/usi', $phone)) {
             throw new InvalidPhoneNumber;
         }
         if(!is_scalar($message)) {
