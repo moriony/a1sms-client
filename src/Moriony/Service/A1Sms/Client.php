@@ -12,7 +12,7 @@ use Moriony\Service\A1Sms\Response\StatusResponse;
 
 class Client
 {
-    const SEND_URL = "http://http.a1smsmarket.ru:8000/send";
+    const SEND_URL = "https://api.a1smsmarket.ru/send";
 
     const OPT_OPERATION = 'operation';
     const OPT_LOGIN = 'login';
